@@ -1,0 +1,101 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+enum { N = 3 };                                            // Größe der Matrizen
+
+typedef double Matrix[N][N];                   // Matrix ist ein N×N double-Feld
+
+// N×N-Matrix a einlesen
+void lies(Matrix a){
+  for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++)
+      scanf("%lf", &a[i][j]);                  
+}
+
+// N×N-Matrix a ausgeben
+void drucke(Matrix a)
+{
+  for (int i = 0; i < N; i++)
+    {
+      for (int j = 0; j < N; j++)
+        printf("  %f", a[i][j]);
+      putchar('\n');
+    }
+  putchar('\n');
+}
+
+// N×N-Matrizen a und b multiplizieren und Produkt in N×N-Matrix c ablegen
+void matmul(Matrix a, Matrix b, Matrix c)
+{
+  for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++)
+      {
+        // Berechnung der Komponente c[i][j]
+        double summe = 0.0;
+        for (int k = 0; k < N; k++)
+          summe += a[i][k] * b[k][j];
+        c[i][j] = summe;
+      }
+}
+
+void matplus(Matrix a, Matrix b, Matrix c)
+{
+  for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++){
+
+        c[i][j] = a[i][j] + b[i][j];
+    }
+}
+
+bool symmetrisch(Matrix a)
+{
+    for (int i = 0; i < N; i++){
+    for (int j = 0; j < N; j++){
+        if(a[i][j] != a[j][i]){
+            printf("Die Matrix ist nicht symmetrisch\n");
+            return false;
+            }
+        }
+    }
+    printf("Die Matrix ist symmetrisch \n");
+    return true;
+}
+
+void oberes_dreieck(Matrix a, double* new_a)
+{
+    int m = 0;
+    for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++){
+        if(j >= i){// Wenn Zeile größer als Spalte wird es notiert
+        new_a[m] = a[i][j];
+        m++;
+        printf("%f ", a[i][j]);
+        }
+    }
+}
+
+
+int main(void)
+{
+  Matrix a, b, c;
+  double new_a[6];
+
+  printf("%d×%d-Matrix a eingeben: ", N, N);
+  lies(a);                      
+  printf("a = \n");
+  drucke(a);
+  printf("%d×%d-Matrix b eingeben: ", N, N);
+  lies(b);
+  printf("b = \n");
+  drucke(b);
+  matmul(a, b, c);
+  printf("c = a * b = \n");
+  drucke(c);
+  matplus(a,b,c);
+  printf("c = a + b = \n");
+  drucke(c);
+  symmetrisch(a);
+  oberes_dreieck(a,new_a);
+
+ 
+}
