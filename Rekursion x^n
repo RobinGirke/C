@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+float ergebnis(float x,int n){
+    if (n==0)
+        return 1;
+        else if (n%2==1)
+            return (x * ergebnis(x,n-1));
+            else if (n%2==0)
+                return (ergebnis(x,n/2)*ergebnis(x,n/2));
+
+}
+
+int main (void){
+    float x;
+    int n;
+    do {
+    printf ("In diesem Programm wird x^n ausgerechnet. Bitte geben sie eine beliebgige Zahl x ungleich 0 ein:");
+    scanf ("%f",&x);
+    printf ("bitte geben sie eine Beliebige Zahl n >=0 ein:");
+    scanf ("%i",&n);
+    if (x==0 || n<0)
+        printf ("Ungueltige Eingabe!");
+    }
+    while (x==0 || n<0);
+    printf ("Das Ergebnis von %f hoch %i ist %f",x,n,ergebnis(x,n));
+
+
+}
