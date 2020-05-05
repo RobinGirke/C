@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+void add_vectors(double a[3],double b[3]){
+    double summe[3];
+    printf("Das ergebnis der Addition der Vektoren ist:\n");
+    for (int i=0; i<3;i++){
+        summe[i]=a[i]+b[i];
+        printf("%lf\n",summe[i]);
+    }
+}
+
+void max_position(double a[3]){
+    int k=0;
+    for (int i=0;i<3;i++){
+        if (a[k]<a[i])
+            k=i;
+
+    }
+    printf ("Der höchste wert des Vektos a befindet sich an der %i. Stelle",k+1);  // da sich die stelle auf den vektor bezieht und nicht auf das array muss eine stelle hinzugerechnet werden
+}
+
+int main(void){
+    printf("Bitte geben sie den ersten 3 stelligen Vektor ein:\n");
+    double a[3];
+    double b[3];
+    for(int i=0; i<3;i++)
+        scanf ("%lf",&a[i]);
+    printf("Bitte geben sie den zweiten 3 stelligen Vektor ein:\n");
+    for(int i=0; i<3;i++)
+        scanf ("%lf",&b[i]);
+    add_vectors(a,b);
+    max_position(a);
+}
