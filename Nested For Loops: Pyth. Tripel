@@ -1,0 +1,25 @@
+# include <stdio.h>
+
+int main (void){
+    int g;
+    do{
+        printf ("Bitte geben sie eine Zahl ein, bis wohin nach pythagoraeischen Tripeln gesucht werden soll (>5)");
+        scanf ("%i",&g);
+    }
+    while (g<5 || g%1!=0);// es gibt kein tripel unter g=5
+    int k, i, j;
+
+    for(k=5; k<=g; k++){
+        for(j=1;j<k;j++){
+            for(i=1;i<j;i++){
+                if (i*i+j*j==k*k)
+                printf ("%i^2 + %i^2 = %i^2\n",i ,j ,k);
+                }
+          }
+
+    }
+
+
+
+
+}
