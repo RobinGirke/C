@@ -65,9 +65,9 @@ void oberes_dreieck(Matrix a, double* new_a)
 {
     int m = 0;
     for (int i = 0; i < N; i++)
-    for (int j = 0; j < N; j++){
+      for (int j = 0; j < N; j++){
         if(j >= i){// Wenn Zeile größer als Spalte wird es notiert
-        new_a[m] = a[i][j];
+          new_a[m] = a[i][j];
         m++;
         printf("%f ", a[i][j]);
         }
