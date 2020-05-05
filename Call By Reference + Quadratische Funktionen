@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+
+int quad (double a,double b,double c,double* pr1,double* pr2){
+    double d;
+    d = b * b-(4* a* c);
+    if (d<0)
+        return 0;
+        else if (d==0){
+            *pr1=(-b)/(a*2);
+            return 1;}
+            else {
+                *pr1=(-b+sqrt(d))/(a*2);
+                *pr2=(-b-sqrt(d))/(a*2);
+                return 2;}
+
+ }
+
+
+
+int main (void){
+    double a,b,c,r1,r2;
+    printf ("Bitte geben sie die Parameter a,b und c einer Quatdratischen Funktion ax^2 +bx+c ein:");
+    scanf ("%lf%lf%lf",&a,&b,&c);
+
+
+    switch (quad(a,b,c,&r1,&r2)){
+        case 0:{
+            printf ("Diese Gleichung hat keine Nullstellen!");
+            break;}
+        case 1:{
+            printf ("Diese Gleichung hat 1 doppelte Nullstelle und zwar bei: %lf",r1);
+            break;}
+        case 2:{
+            printf ("Diese Gleichung hat 2 Nullstellen und zwar bei %lf und %lf",r1,r2);
+            break;}
+    }
+
+}
