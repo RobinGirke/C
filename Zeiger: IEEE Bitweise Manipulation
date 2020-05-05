@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main (void){
+    float f;
+    float* pf=&f;
+    int* pi=(int*)&f;
+
+    printf ("Bitte geben sie eine Gleitkommazahl ein:");
+    scanf("%f",pf);
+    printf ("Die eingegebene Zahl ist :%f!\n",*pf);
+    *pi^=1<<31;             // wechseln des vorzeichens durch bitweises oder XOR auf dem 32. (vorzeichen-)bit
+    printf ("Die eingegebene Zahl mit umgedrehten Vorzeichen ist:%f!\n",*pf);
+    int e = (*pi & (((1<<8)-1)<<23))>>23;  // eine siebenstellige reihe einsen wird erschaffen und auf den bereich des exponenten geshiftet, dort wird mit einen bitweisen "und" der exponent rauskopiuert und dann wieder zurückgeschiftet, sodass der exponent als int zahl auf e gespeichert werden kann
+    *pi^=(e<<23);   // "löschen" des exponenten durch bitweises oder mit selbigem, nur nullen verbleiben im exponenten, die mantisse bleibt unberührt
+    e-=1;    // der exponent wird -1 gerechnet, damit qwird die zahl durch zwei geteilt
+    *pi|=(e<<23);  // durch bitweises oder wird der e in den exponenten der zahl "hineinkopiert"
+    printf ("Die haelfte dieser Zahl ist :%f!\n",*pf);
+
+}
